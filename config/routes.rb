@@ -3,9 +3,11 @@ SampleWeb::Application.routes.draw do
   resources :users
   
   resources :line_items
-
+  
   resources :carts
-
+  
+  resources :sessions, only: [:new, :create, :destroy]
+  
   get "users/new"
   
   get "store/index"
@@ -14,10 +16,12 @@ SampleWeb::Application.routes.draw do
   
   root :to => 'store#index', :as => 'store'
   
-   match '/signup',  :to => 'users#new'
-   match '/homepage',  :to => 'store#index'
-   
-
+  match '/signup',  :to => 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+  match '/homepage',  :to => 'store#index'
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
