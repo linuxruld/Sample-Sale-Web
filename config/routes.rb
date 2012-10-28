@@ -1,4 +1,8 @@
 SampleWeb::Application.routes.draw do
+  resources :line_items
+
+  resources :carts
+
   get "user/new"
   
   get "store/index"
@@ -8,6 +12,8 @@ SampleWeb::Application.routes.draw do
   root :to => 'store#index', :as => 'store'
   
    match '/signup',  :to => 'user#new'
+   match '/homepage',  :to => 'store#index'
+   
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
