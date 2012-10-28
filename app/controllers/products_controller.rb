@@ -1,4 +1,8 @@
 class ProductsController < ApplicationController
+
+  before_filter :admin_user, only: [:edit, :update, :destroy,:new,:create]
+  
+  
   # GET /products
   # GET /products.json
   def index
@@ -80,4 +84,22 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private 
+  def admin_user
+      redirect_to(products_url) unless current_user.admin?
+  end
+  
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
+  end
+  
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(products_url) unless current_user?(@user)
+  end
+
 end

@@ -5,7 +5,6 @@
 
 <h1>AKB48 Shop</h1>
 
-
 <% @products.each do |product| %>
   <div class="entry">
     <%= image_tag(product.image_url) %>
