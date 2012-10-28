@@ -1,9 +1,12 @@
 SampleWeb::Application.routes.draw do
+  
+  resources :users
+  
   resources :line_items
 
   resources :carts
 
-  get "user/new"
+  get "users/new"
   
   get "store/index"
   
@@ -11,7 +14,7 @@ SampleWeb::Application.routes.draw do
   
   root :to => 'store#index', :as => 'store'
   
-   match '/signup',  :to => 'user#new'
+   match '/signup',  :to => 'users#new'
    match '/homepage',  :to => 'store#index'
    
 
