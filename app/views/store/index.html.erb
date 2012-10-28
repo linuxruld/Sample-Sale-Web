@@ -4,8 +4,11 @@
 <% end %>
 
 <h1>AKB48 Shop</h1>
-
-
+<%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+<div id="cart" >
+<%= render @cart %>
+</div>
+<% end %>
 <% @products.each do |product| %>
   <div class="entry">
     <%= image_tag(product.image_url) %>
@@ -17,3 +20,5 @@
     </div>
   </div>
 <% end %>
+
+

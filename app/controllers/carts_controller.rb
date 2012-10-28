@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  
+  before_filter :signed_in_user, only: [:index, :edit, :update,:show,:new]
   # GET /carts
   # GET /carts.json
   def index
@@ -81,8 +83,16 @@ class CartsController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to(store_url,:notice => 'Your cart is currently empty') }
+      format.html { redirect_to(store_url)}
       format.xml { head :ok}
+    end
+  end
+  
+  private
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
     end
   end
 end
