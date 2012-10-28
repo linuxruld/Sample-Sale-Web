@@ -16,7 +16,9 @@
           <dd><%= truncate(strip_tags(product.description),
                  :length => 80) %></dd>
         </dl>
+		
       </td>	  
+	  
       <td class="list_actions">
       	<% if current_user.admin?%>
         <%= link_to 'Show', product %><br/>
