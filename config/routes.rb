@@ -1,5 +1,7 @@
 SampleWeb::Application.routes.draw do
   
+  resources :orders
+
   resources :users
   
   resources :line_items
@@ -12,6 +14,8 @@ SampleWeb::Application.routes.draw do
   
   get "store/index"
   
+  #get "orders/finish_order"
+  
   resources :products
   
   root :to => 'store#index', :as => 'store'
@@ -19,7 +23,7 @@ SampleWeb::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-  match '/homepage',  :to => 'store#index'
+  match '/finish_order',  :to => 'orders#finish_order'
   
   
   # The priority is based upon order of creation:

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
-  
+
   private
   def current_cart
     Cart.find(session[:cart_id])
@@ -10,4 +10,6 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
     cart
   end
+  
+    
 end

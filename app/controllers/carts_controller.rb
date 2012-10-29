@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   
-  before_filter :signed_in_user, only: [:index, :edit, :update,:show,:new]
+  before_filter :signed_in_user, only: [:index, :edit, :update,:show,:new,:create]
+  before_filter :correct_user,   only: [:index, :edit, :update,:show,:new,:create]
   # GET /carts
   # GET /carts.json
   def index
@@ -88,11 +89,20 @@ class CartsController < ApplicationController
     end
   end
   
+
   private
-  def signed_in_user
+  
+   def signed_in_user
     unless signed_in?
       store_location
       redirect_to signin_url, notice: "Please sign in."
     end
   end
+  
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
+  end
+
+
 end

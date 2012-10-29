@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   
   def destroy
     sign_out
-    redirect_to homepage_path
+    redirect_to store_url
   end
   
   def sign_in(user)

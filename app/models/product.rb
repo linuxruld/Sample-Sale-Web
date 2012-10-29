@@ -13,6 +13,10 @@ class Product < ActiveRecord::Base
   validates :title, :uniqueness => true
   validates :image_url, :format =>{:with => %r{\.(gif|jpg|png)$}i,:message => 'must be a URL for GIF, JPG or PNG image.'}
   
+  def self.search(search)
+    search_condition = "%" + search + "%"
+    find(:all, :conditions => ['title LIKE ? OR description LIKE ?', search_condition, search_condition])
+  end
   
   private
   

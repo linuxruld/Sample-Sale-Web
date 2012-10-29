@@ -39,9 +39,9 @@ class UsersController < ApplicationController
   def index
     #@products = Product.all
     @products = Product.paginate(page: params[:page])
-  end
+  end 
   
-  private
+  private 
   
   def signed_in_user
     unless signed_in?
@@ -55,3 +55,4 @@ class UsersController < ApplicationController
     redirect_to(root_path) unless current_user?(@user)
   end
 end
+

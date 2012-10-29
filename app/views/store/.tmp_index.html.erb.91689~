@@ -32,11 +32,4 @@
 </tr>
 </table>
 
-<% form_tag store_url, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-
 
